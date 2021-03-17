@@ -71,7 +71,7 @@ public class CustomerController {
         Page<Customer> customerPage;
         int page = 0;
         do {
-            customerPage = customerRepository.findAll(specification, PageRequest.of(page, 10));
+            customerPage = customerRepository.findAll(specification, PageRequest.of(page, 10000));
             customerPage.getContent()
                     .forEach(customer -> printWriter.write(getCsvRowFromCustomer(customer)));
             page++;
