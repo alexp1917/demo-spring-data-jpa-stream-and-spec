@@ -16,20 +16,34 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.liquibase:liquibase-core'
-	compileOnly 'org.projectlombok:lombok'
+
+	implementation 'org.projectlombok:lombok:1.18.4'
+	testImplementation 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.4'
+
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	testImplementation 'com.h2database:h2'
+	testImplementation 'org.mvnsearch.h2:h2-functions-4-mysql:1.0.0-SNAPSHOT'
+	testImplementation 'commons-codec:commons-codec:1.11'
 }
 
 test {
+	jvmArgs "-XX:NativeMemoryTracking=detail", "-Xmx4g"
 	useJUnitPlatform()
 }
+
+
+
